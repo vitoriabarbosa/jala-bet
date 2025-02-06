@@ -50,7 +50,7 @@ jala-bet/
 ## 🛠 Como Executar o Projeto
 ### 1. Clone este repositório:
   ````bash
-      git clone https://github.com/seu-usuario/jala-bet.git
+      git clone https://github.com/vitoriabarbosa/jala-bet.git
   ````
 
 ### 2. Acesse a pasta do projeto:
