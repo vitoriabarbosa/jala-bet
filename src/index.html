@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jala Bet</title>
+  <!-- CSS Links -->
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <!-- BoxIcons Icons Links -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<header>
+  <div class="logo">
+    <!--<div></div>-->
+    <i class='bx bx-money-withdraw'></i>
+    <a href="#">JalaBet</a>
+  </div>
+  <ul>
+    <li>
+      <a href="#">
+        <i class='bx bxs-help-circle'></i>
+        Como jogar
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bxs-dollar-circle' ></i>
+        Apostas
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class='bx bxs-up-arrow-circle'></i>
+        Níveis
+      </a>
+    </li>
+  </ul>
+  <a class="conta" href="#"><i class='bx bxs-user-circle' ></i></a>
+</header>
+
+<main class="area-jogo">
+  <div class="controle">
+    <h1>Jala Bet - Junte Sorte e Algebra!</h1>
+    <div class="painel">
+      <label>Aposta: $<input type="number" id="bet-amount" value="100"></label>
+      <button id="iniciar-jogo">
+        <i class='bx bxs-right-arrow'></i>
+        Iniciar Jogo
+      </button>
+      <button id="obter-dica">
+        <i class='bx bxs-capsule' ></i>
+        Obter Dica (-20 pontos)
+      </button>
+      <button id="pontuacao">
+        <i class='bx bxs-coin-stack' ></i>
+        Pontos
+      </button>
+    </div>
+  </div>
+  <div id="tabuleiro"></div>
+  <footer>
+    <p>&copy Copyright JalaBet - 2025 | Todos os direitos reservados.</p>
+  </footer>
+</main>
+
+<script src="./js/tabuleiro.js"></script>
+<script src="./js/dicas.js"></script>
+<script src="./js/jogo.js"></script>
+</body>
+</html>
