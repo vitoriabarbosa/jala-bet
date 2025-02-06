@@ -1,6 +1,6 @@
 # Jala Bet 🎲💰
 
-Jala Bet é um jogo de apostas  **baseado emm atrizes e conceitos de álgebra**. O objetivo é testar sua `sorte` e `conhecimento matemático` para avançar pelos níveis e acumular pontos!
+Jala Bet é um jogo de apostas  **baseado em matrizes e conceitos de álgebra**. O objetivo é testar sua `sorte` e `conhecimento matemático` para avançar pelos níveis e acumular pontos!
 
 ---
 
@@ -12,7 +12,7 @@ Jala Bet é um jogo de apostas  **baseado emm atrizes e conceitos de álgebra**.
 
 ## 🖼️ Demonstração
 ![img.png](src/assets/img/demonstracao.png)
-Confira o projeto ao vivo: [ inserir link ]
+Confira o projeto ao vivo: https://jala-bet.vercel.app
 
 
 ## 🚀 Tecnologias Utilizadas
@@ -64,4 +64,4 @@ jala-bet/
 - Adicionar mais operações matemáticas para dicas.
 - Ajustar lógica da pontuação
 - Melhorar efeitos visuais e animações do jogo.
-- interface responsiva.
+- interface responsiva.<br><br>
