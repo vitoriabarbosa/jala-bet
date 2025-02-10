@@ -31,7 +31,7 @@ header .logo{
 header .logo div {
   width: 2.8rem;
   height: 2.8rem;
-  background: white;
+  background: #fff;
   border-radius: 50%;
 }
 
@@ -50,10 +50,11 @@ header ul {
 }
 
 header ul li {
-  background: #004a99;
+  background: var(--fundo-botao-li);
   padding: .4rem 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  position: relative;
 }
 
 header ul li:hover {
@@ -64,15 +65,16 @@ header ul li a {
   display: flex;
   align-items: center;
   gap: .5rem;
+  /*color: #0c0d19;*/
+  font-size: .85rem;
 }
 
 header ul li i {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
 }
 
 header a {
   color: var(--fonte-cor);
-  font-size: .85rem;
 }
 
 header .conta i {
@@ -81,6 +83,7 @@ header .conta i {
 }
 
 .area-jogo {
+  width: 55%;
   border: #efefef 1px solid;
   background: var(--fundo-area-jogo);
   border-radius: 16px;
@@ -97,28 +100,31 @@ header .conta i {
 
 .painel {
   display: flex;
+  flex-flow: wrap;
+  justify-content: center;
   gap: 1rem;
   align-items: center;
+  color: var(--fonte-cor);
 }
 
-button {
+.item-painel {
   display: flex;
+  gap: .5rem;
   align-items: center;
-  padding: .5rem 2rem;
-  margin: 1rem 0;
+  padding: .5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
-  background: var(--fundo-botao);
+  background: var(--fundo-botao-painel);
   color: var(--fonte-cor);
   border: none;
   border-radius: 4px;
 }
 
-button:hover {
+.item-painel:hover {
   background: #308733;
 }
 
-button i {
+.item-painel > button i {
   margin-right: .25rem;
 }
 
@@ -133,7 +139,7 @@ button i {
 .celula {
   width: 5rem;
   height: 5rem;
-  background-color: var(--fundo-celula);
+  background: var(--fundo-celula);
   color: var(--fonte-cor);
   font-size: 1.5rem;
   display: flex;
@@ -149,19 +155,31 @@ button i {
 }
 
 .estrela {
-  background-color: #c9b33e !important;
+  background-color: var(--fundo-celula-estrela) !important;
 }
 
 .bomba {
-  background-color: #bc4d4d !important;
+  background-color: var(--fundo-celula-bomba) !important;
 }
 
-input {
-  padding: .5rem;
-  border-radius: 4px;
-  margin: 1rem .5rem;
-  border: none;
+.revelada {
+  background: #084a8b;
+  transition: background-color 0.5s ease-in-out;
 }
+
+
+.item-painel input {
+  width: 60px;
+  border: none;
+  border-bottom: white solid 1px;
+  font-size: .9rem;
+  text-align: center;
+  color: var(--fonte-cor);
+  outline-style: none;
+  background: transparent;
+}
+
+.item-painel input:focus {}
 
 footer {
   position: relative;

@@ -6,10 +6,10 @@
   <title>Jala Bet</title>
   <!-- CSS Links -->
   <link rel="stylesheet" href="./css/index.css">
-  <link rel="stylesheet" href="./css/style.css">
-  <!-- BoxIcons Icons Links -->
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/info-jogo.css">
+    <!-- BoxIcons Icons Links -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
@@ -21,19 +21,19 @@
   </div>
   <ul>
     <li>
-      <a href="#">
+      <a onclick="abrirInfo('como-jogar')">
         <i class='bx bxs-help-circle'></i>
         Como jogar
       </a>
     </li>
     <li>
-      <a href="#">
+      <a onclick="abrirInfo('apostas')">
         <i class='bx bxs-dollar-circle' ></i>
         Apostas
       </a>
     </li>
     <li>
-      <a href="#">
+      <a onclick="abrirInfo('niveis')">
         <i class='bx bxs-up-arrow-circle'></i>
         Níveis
       </a>
@@ -42,23 +42,55 @@
   <a class="conta" href="#"><i class='bx bxs-user-circle' ></i></a>
 </header>
 
+<div id="como-jogar" class="info-jogo">
+  <div class="titulo-info">
+    <h2>Como Jogar</h2>
+    <button onclick="fecharInfo()"><i class='bx bx-x'></i></button>
+  </div>
+  <ul>
+    <li>Escolha o valor da sua aposta.</li>
+    <li>Clique em "Iniciar Jogo" para gerar o tabuleiro.</li>
+    <li>Se encontrar uma estrela (⭐), ganha pontos!</li>
+    <li>Se encontrar uma bomba (💣), perde tudo e o jogo reinicia.</li>
+    <li>Acumule pontos para avançar de nível.</li>
+    <li>Use dicas matemáticas para prever os melhores caminhos!</li>
+  </ul>
+</div>
+
+<div id="apostas" class="info-jogo">
+  <div class="titulo-info">
+    <h2>Apostas</h2>
+    <button onclick="fecharInfo()"><i class='bx bx-x'></i></button>
+  </div>
+  <p>As apostas variam de $10 a $100. Quanto maior a aposta, maior a recompensa.</p>
+</div>
+
+<div id="niveis" class="info-jogo">
+  <div class="titulo-info">
+    <h2>Níveis</h2>
+    <button onclick="fecharInfo()"><i class='bx bx-x'></i></button>
+  </div>
+  <p>Avance de nível ao acumular pontos suficientes! Cada nível aumenta a dificuldade.</p>
+</div>
+
 <main class="area-jogo">
   <div class="controle">
     <h1>Jala Bet - Junte Sorte e Algebra!</h1>
     <div class="painel">
-      <label>Aposta: $<input type="number" id="bet-amount" value="100"></label>
-      <button id="iniciar-jogo">
+      <label class="item-painel">Aposta: $<input type="number" id="bet-amount" value="10"></label>
+      <label class="item-painel">N° de bombas: <input type="number" id="" value="3"></label>
+      <button class="item-painel" id="iniciar-jogo">
         <i class='bx bxs-right-arrow'></i>
-        Iniciar Jogo
+        Jogar
       </button>
-      <button id="obter-dica">
+      <button class="item-painel" id="obter-dica">
         <i class='bx bxs-capsule' ></i>
-        Obter Dica (-20 pontos)
+        Dica (-20 pontos)
       </button>
-      <button id="pontuacao">
+      <div class="item-painel" id="pontuacao">
         <i class='bx bxs-coin-stack' ></i>
         Pontos
-      </button>
+      </div>
     </div>
   </div>
   <div id="tabuleiro"></div>
@@ -67,8 +99,10 @@
   </footer>
 </main>
 
+<!-- JS Links -->
 <script src="./js/tabuleiro.js"></script>
 <script src="./js/dicas.js"></script>
 <script src="./js/jogo.js"></script>
+<script src="./js/perguntas.js"></script>
 </body>
 </html>

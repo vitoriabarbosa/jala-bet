@@ -15,8 +15,11 @@
   --fundo-area-jogo: #112d68de;
   --sombreamento-area-jogo: 10px 10px 10px #c0ffff70;
   --fundo-celula: #005bb5;
+  --fundo-celula-estrela: #c9b33e;
+  --fundo-celula-bomba: #bc4d4d;
   --sombreamento-celula: 2px 2px 5px #00000066;
-  --fundo-botao: #4CAF50;
+  --fundo-botao-painel: #4CAF50;
+  --fundo-botao-li: #004a99;
   --fonte-cor: #efefef;
   --tipo-fonte-logo: 'Kumar One', serif;
   --tipo-fonte-texto: 'Tektur', serif;
