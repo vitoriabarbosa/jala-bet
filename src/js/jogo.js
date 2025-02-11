@@ -1,5 +1,10 @@
+let jogoIniciado = false; // variável de controle !!!
+
 // ao iniciar o jogo cria o tabuleiro
-document.getElementById("iniciar-jogo").addEventListener("click", criarTabuleiro);
+document.getElementById("iniciar-jogo").addEventListener("click", function () {
+  jogoIniciado = true;
+  criarTabuleiro();
+});
 
 // chama um alert com a dica
 document.getElementById("obter-dica").addEventListener("click", obterDica);
@@ -21,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".titulo-info button").forEach(botao => {
     botao.addEventListener("click", (event) => {
       event.stopPropagation(); // não fechar ao clicar no próprio botão (pensando...)
-      let caixaInfo = botao.closest(".info-jogo");
+      let caixaInfo = botao.closest(".modal-info-jogo");
       fecharInfo(caixaInfo.id);
     });
   });
@@ -33,7 +38,7 @@ function abrirInfo(id) {
   if (!caixaInfo) return; // Se não existe, sai
 
   // fecha todas as outras antes de abrir !!!
-  document.querySelectorAll(".info-jogo").forEach(caixa => {
+  document.querySelectorAll(".modal-info-jogo").forEach(caixa => {
     if (caixa.id !== id) caixa.classList.remove("active");
   });
 
@@ -53,14 +58,14 @@ function fecharInfo(id) {
   caixaInfo.classList.remove("active");
 
   // tira o evento de fechar ao clicar fora -> se não houver caixas abertas
-  if (!document.querySelector(".info-jogo.active")) {
+  if (!document.querySelector(".modal-info-jogo.active")) {
     document.removeEventListener("click", fecharFora);
   }
 }
 
 // fechar ao clicar fora
 function fecharFora(event) {
-  let caixasInfo = document.querySelectorAll(".info-jogo.active");
+  let caixasInfo = document.querySelectorAll(".modal-info-jogo.active");
   let clicarNaCaixa = Array.from(caixasInfo).some(caixaInfo => caixaInfo.contains(event.target));
 
   if (!clicarNaCaixa) {
