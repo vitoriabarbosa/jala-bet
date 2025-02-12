@@ -139,8 +139,8 @@ header .conta i {
 }
 
 .celula {
-  width: 5rem;
-  height: 5rem;
+  width: var(--tamanho-celula);
+  height: var(--tamanho-celula);
   background: var(--fundo-celula);
   color: var(--fonte-cor);
   font-size: 1.5rem;
@@ -169,8 +169,11 @@ header .conta i {
   transition: background-color 0.5s ease-in-out;
 }
 
+.item-painel label {
+  color: var(--fonte-cor);
+}
 
-.item-painel input {
+.item-painel select {
   width: 60px;
   border: none;
   border-bottom: white solid 1px;
@@ -179,6 +182,10 @@ header .conta i {
   color: var(--fonte-cor);
   outline-style: none;
   background: transparent;
+}
+
+.item-painel select option {
+  color: #004a99;
 }
 
 .item-painel input:focus {}
