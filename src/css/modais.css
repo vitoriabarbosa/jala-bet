@@ -7,7 +7,7 @@
   width: 30rem;
   max-width: 90%;
   border-radius: 16px;
-  color: #112e6b;
+  color: var(--fonte-cor-modal);
   position: absolute;
   top: 10%;
   left: 50%;
@@ -36,8 +36,8 @@
   font-size: 2rem;
   display: flex;
   align-items: center;
-  color: var(--fonte-cor);
-  background: var(--fundo-botao-li);
+  color: var(--fonte-cor-padrao);
+  background: var(--fundo-botao-header);
   border-radius: 4px;
   cursor: pointer;
 }
@@ -91,7 +91,7 @@
 }
 
 .modal-perguntas-conteudo p {
-  color: #000;
+  color: var(--fonte-cor-modal);
   font-size: 1.5rem
 }
 
@@ -106,16 +106,68 @@
   padding: .8rem 1.5rem;
   font-size: 1rem;
   border-radius: 4px;
-  border: 1px solid #34425e;
+  border: 1px solid var(--fonte-cor-modal);
+  color: var(--fonte-cor-modal);
   cursor: pointer;
 }
 
 #resposta-falso:hover {
   background: #bc4d4d;
-  color: var(--fonte-cor);
+  color: var(--fonte-cor-padrao);
 }
 
 #resposta-verdadeiro:hover {
   background: #4CAF50;
-  color: var(--fonte-cor);
+  color: var(--fonte-cor-padrao);
+}
+
+.modal-content {
+  background: #dedede;
+  color: var(--fonte-cor-modal);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.modal-content h2 {
+  margin-bottom: 1rem;
+}
+
+.modal-content button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.modal-content button:hover {
+  background: #218838;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #dedede;
+  color: var(--fonte-cor-modal);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
 }

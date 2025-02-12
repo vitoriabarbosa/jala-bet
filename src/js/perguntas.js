@@ -29,6 +29,11 @@ function exibirPergunta() {
     return;
   }
 
+  if (pontuacao < 10) {
+    alert("Você precisa de pelo menos 10 pontos para responder a uma pergunta!");
+    return;
+  }
+
   let questao = perguntas[Math.floor(Math.random() * perguntas.length)];
   textoPergunta.textContent = questao.pergunta;
   // "mostrar" o modal da pergunta destacado e o efeito de escurecimento ao fundo
@@ -43,24 +48,35 @@ function exibirPergunta() {
 function validarResposta(respostaUsuario, respostaCorreta) {
   modalPergunta.style.display = "none";
   overlay.style.display = "none";
+  pontuacao -= 10;
 
   if (respostaUsuario === respostaCorreta) {
-    alert("Parabéns! Você acertou e ganhou uma estrela!");
+    alert("Você acertou! Uma estrela acabou de brilhar no tabuleiro! Você ganhou 10 pontos");
     pontuacao += 10;
-    revelarEstrela();
+    revelarEstrela(); // Revela a estrela no tabuleiro
   } else {
     alert("Ops! Resposta errada. Você perdeu 10 pontos...");
     pontuacao -= 10;
   }
 
+  // Atualiza a pontuação na interface
   document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`;
 }
 
+// Função que revela a estrela em uma célula aleatória
 function revelarEstrela() {
   let celulas = document.querySelectorAll(".celula:not(.estrela):not(.bomba)");
-  if (celulas.length === 0) return; // se todas as células já foram reveladas, não faz nada (tirar ???)
+  if (celulas.length === 0) return; // Se todas as células já foram reveladas, não faz nada
 
   let celulaSorteada = celulas[Math.floor(Math.random() * celulas.length)];
   celulaSorteada.textContent = "⭐";
   celulaSorteada.classList.add("estrela");
+  celulaSorteada.classList.add("revelada"); // Marca a célula como revelada para não poder ser clicada novamente
+
+  // Atualiza a pontuação da estrela
+  pontuacao += 10; // Adiciona 10 pontos por cada estrela revelada
+  document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`;
+
+  // Remove o evento de clique da célula revelada
+  celulaSorteada.removeEventListener("click", revelarCelula);
 }

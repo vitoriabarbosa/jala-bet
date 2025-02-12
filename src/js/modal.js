@@ -63,3 +63,25 @@ function fecharFora(event) {
   }
 }
 
+function exibirModalFinal() {
+  let modal = document.createElement("div");
+  modal.id = "modal-final";
+  modal.innerHTML = `
+    <div class="modal-content">
+      <h2>🏆 Parabéns, você concluiu o jogo!</h2>
+      <p>Sua pontuação final foi: <strong>${pontuacao}</strong></p>
+      <button id="fechar-modal">Fechar</button>
+    </div>
+  `;
+  modal.classList.add("modal-overlay");
+  document.body.appendChild(modal);
+
+  // Fechar o modal
+  document.getElementById("fechar-modal").addEventListener("click", () => {
+    modal.remove();
+    resetarJogo("Parabéns! Você mostrou que domina os temas de álgebra linear!");
+  });
+}
+
+
+

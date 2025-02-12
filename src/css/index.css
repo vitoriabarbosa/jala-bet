@@ -12,16 +12,21 @@
 }
 
 :root {
-  --fundo-area-jogo: #112d68de;
-  --sombreamento-area-jogo: 10px 10px 10px #c0ffff70;
-  --tamanho-celula: 5rem; /* tamanho inicial */
-  --fundo-celula: #005bb5;
-  --fundo-celula-estrela: #c9b33e;
-  --fundo-celula-bomba: #bc4d4d;
-  --sombreamento-celula: 2px 2px 5px #00000066;
-  --fundo-botao-painel: #4CAF50;
-  --fundo-botao-li: #004a99;
-  --fonte-cor: #efefef;
   --tipo-fonte-logo: 'Kumar One', serif;
   --tipo-fonte-texto: 'Tektur', serif;
+  --fonte-cor-padrao: #efefef;
+  --fundo-botao-header: #004a99;
+  --fonte-cor-modal: #112e6b;
+  --fundo-area-jogo: #112d68de;
+  --sombreamento-area-jogo: 10px 10px 10px #c0ffff70;
+  --fonte-cor-painel: #0c0d19;
+  /*--fundo-botao-painel: #4CAF50;*/
+  --fonte-cor-contraste: #c5ffff;
+  --fundo-botao-painel: #c9b33e;
+  --tamanho-celula: 5rem; /* tamanho inicial */
+  --fundo-celula-padrao: #005bb5;
+  --fundo-celula-destaque: #084a8b;
+  --sombreamento-celula: 2px 2px 5px #00000066;
+  --fundo-celula-estrela: #c9b33e;
+  --fundo-celula-bomba: #bc4d4d;
 }

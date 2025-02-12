@@ -2,7 +2,7 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   background: url("../assets/img/fundo-jalabet.jpg") no-repeat center fixed;
-  color: var(--fonte-cor);
+  color: var(--fonte-cor-padrao);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,9 +50,8 @@ header ul {
 }
 
 header ul li {
-  background: var(--fundo-botao-li);
-  padding: .4rem 1rem;
-  border-radius: 8px;
+  background: var(--fundo-botao-header);
+  border-radius: 4px;
   cursor: pointer;
   position: relative;
 }
@@ -65,16 +64,16 @@ header ul li a {
   display: flex;
   align-items: center;
   gap: .5rem;
-  /*color: #0c0d19;*/
   font-size: .85rem;
+  padding: .4rem 1.5rem;
 }
 
 header ul li i {
-  font-size: 1.45rem;
+  font-size: 1.3rem;
 }
 
 header a {
-  color: var(--fonte-cor);
+  color: var(--fonte-cor-padrao);
 }
 
 header .conta i {
@@ -93,6 +92,11 @@ header .conta i {
   box-shadow: var(--sombreamento-area-jogo);
 }
 
+h1 {
+  font-size: 2rem;
+  margin: 2rem 0;
+}
+
 .controle {
   display: flex;
   flex-direction: column;
@@ -106,28 +110,29 @@ header .conta i {
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  color: var(--fonte-cor);
+  color: var(--fonte-cor-painel);
 }
 
 .item-painel {
   display: flex;
   gap: .5rem;
   align-items: center;
-  padding: .5rem 1rem;
-  font-size: 1rem;
+  padding: .5rem 1.5rem;
+  font-size: .9rem;
   cursor: pointer;
   background: var(--fundo-botao-painel);
-  color: var(--fonte-cor);
+  box-shadow: var(--sombreamento-celula);
+  color: var(--fonte-cor-painel);
   border: none;
   border-radius: 4px;
 }
 
 .item-painel:hover {
-  background: #308733;
+  background: #b69906;
 }
 
-.item-painel > button i {
-  margin-right: .25rem;
+.item-painel i {
+  font-size: 1.2rem;
 }
 
 #tabuleiro {
@@ -141,8 +146,7 @@ header .conta i {
 .celula {
   width: var(--tamanho-celula);
   height: var(--tamanho-celula);
-  background: var(--fundo-celula);
-  color: var(--fonte-cor);
+  background: var(--fundo-celula-padrao);
   font-size: 1.5rem;
   display: flex;
   justify-content: center;
@@ -153,7 +157,7 @@ header .conta i {
 }
 
 .celula:hover {
-  background-color: #084a8b;
+  background-color: var(--fundo-celula-destaque);
 }
 
 .estrela {
@@ -165,30 +169,34 @@ header .conta i {
 }
 
 .revelada {
-  background: #084a8b;
+  background: var(--fundo-celula-destaque);
   transition: background-color 0.5s ease-in-out;
 }
 
 .item-painel label {
-  color: var(--fonte-cor);
+  color: var(--fonte-cor-painel);
 }
 
 .item-painel select {
-  width: 60px;
+  width: 70px;
   border: none;
-  border-bottom: white solid 1px;
+  border-bottom: #0c0d19 solid 1px;
   font-size: .9rem;
-  text-align: center;
-  color: var(--fonte-cor);
+  text-align: left;
+  color: var(--fonte-cor-painel);
   outline-style: none;
   background: transparent;
 }
 
 .item-painel select option {
-  color: #004a99;
+  color: var(--fonte-cor-painel);
 }
 
-.item-painel input:focus {}
+.desativado {
+  opacity: .8;
+  pointer-events: none;
+  transition: opacity .5s;
+}
 
 #pontuacao {
   position: absolute;
@@ -199,14 +207,27 @@ header .conta i {
   border: 1px solid;
   padding: .8rem 2rem;
   font-weight: 600;
+  color: var(--fonte-cor-padrao);
   box-shadow: var(--sombreamento-celula);
+}
+
+#iniciar-jogo {
+  color: var(--fonte-cor-contraste);
+  background: #b33434;
+  border: 1px solid black;
+  font-weight: 600;
+  box-shadow: var(--sombreamento-celula);
+}
+
+#iniciar-jogo:hover {
+  background: #a90e0e;
 }
 
 footer {
   position: relative;
   bottom: -1rem;
   width: 100%;
-  color: var(--fonte-cor);
+  color: var(--fonte-cor-padrao);
   text-align: center;
   padding: 1.5rem;
   font-size: .9rem;
