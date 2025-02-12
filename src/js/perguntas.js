@@ -4,11 +4,16 @@ const perguntas = [
   { pergunta: "O determinante de uma matriz identidade de qualquer ordem é sempre 1?", resposta: true },
   { pergunta: "Se uma matriz tem determinante zero, então ela é invertível?", resposta: false },
   { pergunta: "Se um vetor é solução de um sistema homogêneo, ele também será solução para o sistema não homogêneo?", resposta: false },
-  { pergunta: "Se uma matriz tem mais colunas do que linhas, seu sistema sempre terá solução única?", resposta: false }
-  //   pensando em outras perguntas ainda...
+  { pergunta: "Se uma matriz tem mais colunas do que linhas, seu sistema sempre terá solução única?", resposta: false },
+  { pergunta: "Somente matrizes de ordem NxN possuem determinante?", resposta: true },
+  { pergunta: "Uma matriz quadrada pode ser escrita como a soma de sua simétrica com sua antissimétrica?", resposta: true },
+  { pergunta: "Matrizes de qualquer ordem podem ser multiplicadas.", resposta: false },
+  { pergunta: "Toda matriz possui uma transformação linear.", resposta: false },
+  { pergunta: "A quantidade de vetores 'Rn' são limitadas. ", resposta: false },
+  { pergunta: "Um vetor R2 pode ser transformado em R3?", resposta: true },
 ];
 
-const modal = document.getElementById("modal-pergunta");
+const modalPergunta = document.getElementById("modal-pergunta");
 const textoPergunta = document.getElementById("texto-pergunta");
 const btnVerdadeiro = document.getElementById("resposta-verdadeiro");
 const btnFalso = document.getElementById("resposta-falso");
@@ -16,34 +21,35 @@ const botaoPergunta = document.getElementById("botao-pergunta");
 
 botaoPergunta.addEventListener("click", exibirPergunta);
 
-const overlay = document.getElementById("overlay");
+const overlay = document.getElementById("overlay"); // armazenar o efeito de escurecer o fundo da tela
 
 function exibirPergunta() {
   if (!jogoIniciado) {
-    alert("Você precisa iniciar o jogo primeiro!");
+    alert("Opa... Você precisa iniciar o jogo primeiro!");
     return;
   }
 
   let questao = perguntas[Math.floor(Math.random() * perguntas.length)];
   textoPergunta.textContent = questao.pergunta;
-
-  modal.style.display = "block";
-  overlay.style.display = "block"; // Ativa o fundo escuro
+  // "mostrar" o modal da pergunta destacado e o efeito de escurecimento ao fundo
+  modalPergunta.style.display = "block";
+  overlay.style.display = "block";
 
   btnVerdadeiro.onclick = () => validarResposta(true, questao.resposta);
   btnFalso.onclick = () => validarResposta(false, questao.resposta);
 }
 
+// dps de responder a pergunta, modal some junto ao efeito de fundo
 function validarResposta(respostaUsuario, respostaCorreta) {
-  modal.style.display = "none"; // Fecha o modal
-  overlay.style.display = "none"; // Remove o fundo escuro
+  modalPergunta.style.display = "none";
+  overlay.style.display = "none";
 
   if (respostaUsuario === respostaCorreta) {
-    alert("Parabéns! Você acertou e ganhou uma dica!");
+    alert("Parabéns! Você acertou e ganhou uma estrela!");
     pontuacao += 10;
     revelarEstrela();
   } else {
-    alert("Ops! Resposta errada. Você perdeu 10 pontos!");
+    alert("Ops! Resposta errada. Você perdeu 10 pontos...");
     pontuacao -= 10;
   }
 
@@ -52,7 +58,7 @@ function validarResposta(respostaUsuario, respostaCorreta) {
 
 function revelarEstrela() {
   let celulas = document.querySelectorAll(".celula:not(.estrela):not(.bomba)");
-  if (celulas.length === 0) return; // Se todas já foram reveladas, não faz nada
+  if (celulas.length === 0) return; // se todas as células já foram reveladas, não faz nada (tirar ???)
 
   let celulaSorteada = celulas[Math.floor(Math.random() * celulas.length)];
   celulaSorteada.textContent = "⭐";
