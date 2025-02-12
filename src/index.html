@@ -89,8 +89,32 @@
   <div class="controle">
     <h1>Jala Bet - Junte Sorte e Algebra!</h1>
     <div class="painel">
-      <label class="item-painel">Aposta: $<input type="number" id="bet-amount" value="10"></label>
-      <label class="item-painel">N° de bombas: <input type="number" id="" value="3"></label>
+      <div class="item-painel">
+        <label for="bet-amount">Aposta: $</label>
+        <select id="bet-amount">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+          <option value="60">60</option>
+          <option value="70">70</option>
+          <option value="80">80</option>
+          <option value="90">90</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+      <div class="item-painel">
+        <label for="num-bombas">Bombas:</label>
+        <select id="num-bombas">
+          <option value="40">40%</option>
+          <option value="50">50%</option>
+          <option value="60">60%</option>
+          <option value="70">70%</option>
+          <option value="80">80%</option>
+          <option value="90">90%</option>
+        </select>
+      </div>
       <button class="item-painel" id="iniciar-jogo">
         <i class='bx bxs-right-arrow'></i>
         Jogar

@@ -14,6 +14,7 @@
 :root {
   --fundo-area-jogo: #112d68de;
   --sombreamento-area-jogo: 10px 10px 10px #c0ffff70;
+  --tamanho-celula: 5rem; /* tamanho inicial */
   --fundo-celula: #005bb5;
   --fundo-celula-estrela: #c9b33e;
   --fundo-celula-bomba: #bc4d4d;
