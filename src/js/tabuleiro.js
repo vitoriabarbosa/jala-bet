@@ -1,10 +1,11 @@
 let nivel = 1; // nível easy
 let tamanhoTabuleiro = 3; // tabuleiro inicial
+let tabuleiroMaximo = 7; // tabuleiro que finaliza o jogo
 let bombas = new Set(); // armazena as posições das bombas
-const tabuleiro = document.getElementById("tabuleiro");
 let pontuacao = 0;
 let apostaInicial = 10;
 let multiplicador = 0.5;
+const tabuleiro = document.getElementById("tabuleiro");
 
 function criarTabuleiro() {
   tabuleiro.innerHTML = "";
@@ -47,14 +48,15 @@ function revelarCelula(celula) {
     // dá um tempinho antes de mostrar o alerta e resetar o jogo
     setTimeout(() => {
       revelarTabuleiro();
-      console.log(revelarTabuleiro());
+      // console.log(revelarTabuleiro());
       setTimeout(() => {
         alert("Você perdeu! Reiniciando o jogo.");
         nivel = 1;
-        pontuacao = 0;
+        pontuacao = 0;  // reseta os pontos quando perde
         multiplicador = 1.5;
         criarTabuleiro();
-      }, tamanhoTabuleiro * 50 + 1000); // espera pra revelar todas as células antes de resetar
+        document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`; // mostra os pontos zerados
+      }, tamanhoTabuleiro * 100 + 1000); // espera pra revelar todas as células antes de resetar
     }, 500); // pequeno delay
   } else {
     // celula.textContent = "1";
@@ -62,7 +64,7 @@ function revelarCelula(celula) {
     celula.classList.add("estrela");
     pontuacao += Math.floor(apostaValor * multiplicador);
 
-    if (pontuacao >= nivel * 50) { // avança de nível
+    if (pontuacao >= ((tamanhoTabuleiro * tamanhoTabuleiro) / 2)) { // avança de nível
       setTimeout(() => {
         revelarTabuleiro();
         setTimeout(() => {
@@ -74,7 +76,6 @@ function revelarCelula(celula) {
       }, 500); // pequeno delay
     }
   }
-  
   document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`;
 }
 
@@ -87,7 +88,6 @@ function revelarTabuleiro() {
 
       if (bombas.has(indice)) {
         celula.textContent = "💣";
-        // celula.textContent = "0"; // bomba = "0"
         celula.classList.add("bomba");
       } else {
         celula.textContent = "⭐";
@@ -96,6 +96,13 @@ function revelarTabuleiro() {
       }
 
       celula.classList.add("revelada"); // animação
-    }, index * 50); // efeito "cascata"
+
+      if (index === celulas.length - 1) {
+        setTimeout(() => {
+          criarTabuleiro();
+        }, 100); // delay pra mostrar e finalizar
+        document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`; //mostra pontuacao maxima
+      }
+    }, index * 100); // efeito "cascata"
   });
 }
