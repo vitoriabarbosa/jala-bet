@@ -8,6 +8,12 @@ let multiplicador = 0.5;
 const tabuleiro = document.getElementById("tabuleiro");
 
 function criarTabuleiro() {
+
+  if (tamanhoTabuleiro > tabuleiroMaximo) {
+    alert("Você chegou ao fim! Conseguiu ser bom em álgebra e na sorte 😱");
+    return;
+  }
+
   tabuleiro.innerHTML = "";
   tamanhoTabuleiro = 2 + nivel; // aumenta o tabuleiro a cada nível (+ difícil)
   let numBombas = Math.floor(tamanhoTabuleiro * tamanhoTabuleiro * 0.3); // 30% do tabuleiro com bombas
