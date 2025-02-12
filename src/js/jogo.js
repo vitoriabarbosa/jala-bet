@@ -1,76 +1,129 @@
-let jogoIniciado = false; // variável de controle !!!
+let nivel = 1;
+let tamanhoTabuleiro = 3; // começa com um tabuleiro 3x3
+let bombas = new Set(); // armazena as posições das bombas
+const tabuleiro = document.getElementById("tabuleiro"); // referência pro tabuleiro
+let pontuacao = 0;
+let apostaInicial = 10;
+let multiplicador = 1.5;
+let estrelasColetadas = 0;
+let totalEstrelas = 0;
+let jogoIniciado = false; // variável de controle
 
-// ao iniciar o jogo cria o tabuleiro
-document.getElementById("iniciar-jogo").addEventListener("click", function () {
+// botão pra iniciar o jogo
+document.getElementById("iniciar-jogo").addEventListener("click", () => {
   jogoIniciado = true;
+  iniciarJogo();
+});
+
+function iniciarJogo() {
+  let porcentagemBombas = parseInt(document.getElementById("num-bombas").value) / 100;
+  let numBombas = Math.floor((tamanhoTabuleiro * tamanhoTabuleiro) * porcentagemBombas);
+
+  bombas = gerarBombas(numBombas);
+  totalEstrelas = (tamanhoTabuleiro * tamanhoTabuleiro) - bombas.size; // Agora conta as estrelas corretamente
+  estrelasColetadas = 0; // Reseta estrelas coletadas ao iniciar o jogo
+
   criarTabuleiro();
-});
-
-// chama um alert com a dica
-document.getElementById("obter-dica").addEventListener("click", obterDica);
-
-
-document.addEventListener("DOMContentLoaded", () => {
-  // evento de clique para todos os links
-  document.querySelectorAll("header ul li a").forEach(link => {
-    link.addEventListener("click", (event) => {
-      event.stopPropagation(); // evita b.o com o clique fora
-
-      // pega o id de cada caixa
-      let infoId = link.getAttribute("data-info");
-      abrirInfo(infoId);
-    });
-  });
-
-  // seleciona todos os botões de fechar [ x ]
-  document.querySelectorAll(".titulo-info button").forEach(botao => {
-    botao.addEventListener("click", (event) => {
-      event.stopPropagation(); // não fechar ao clicar no próprio botão (pensando...)
-      let caixaInfo = botao.closest(".modal-info-jogo");
-      fecharInfo(caixaInfo.id);
-    });
-  });
-});
-
-// abrir a caixa de informações
-function abrirInfo(id) {
-  let caixaInfo = document.getElementById(id);
-  if (!caixaInfo) return; // Se não existe, sai
-
-  // fecha todas as outras antes de abrir !!!
-  document.querySelectorAll(".modal-info-jogo").forEach(caixa => {
-    if (caixa.id !== id) caixa.classList.remove("active");
-  });
-
-  caixaInfo.classList.add("active");
-
-  // atraso para fechar ao clicar fora
-  setTimeout(() => {
-    document.addEventListener("click", fecharFora);
-  }, 10);
 }
 
-// fechar a caixa de informações
-function fecharInfo(id) {
-  let caixaInfo = document.getElementById(id);
-  if (!caixaInfo) return;
+function criarTabuleiro() {
+  // define o tamanho das células baseado no tamanho do tabuleiro
+  let tamanhoCelula = Math.max(5 - (tamanhoTabuleiro - 3) * 0.5, 2.5);
+  document.documentElement.style.setProperty('--tamanho-celula', `${tamanhoCelula}rem`);
 
-  caixaInfo.classList.remove("active");
+  tabuleiro.style.gridTemplateColumns = `repeat(${tamanhoTabuleiro}, var(--tamanho-celula))`;
+  tabuleiro.innerHTML = ''; // limpa o tabuleiro antes de recriar
 
-  // tira o evento de fechar ao clicar fora -> se não houver caixas abertas
-  if (!document.querySelector(".modal-info-jogo.active")) {
-    document.removeEventListener("click", fecharFora);
+  // cria as células do tabuleiro
+  for (let i = 0; i < tamanhoTabuleiro * tamanhoTabuleiro; i++) {
+    let celula = document.createElement('div');
+    celula.classList.add('celula');
+    celula.dataset.index = i; // armazena o índice da célula
+    celula.addEventListener("click", () => revelarCelula(celula)); // adiciona o evento de clique
+    tabuleiro.appendChild(celula);
   }
 }
 
-// fechar ao clicar fora
-function fecharFora(event) {
-  let caixasInfo = document.querySelectorAll(".modal-info-jogo.active");
-  let clicarNaCaixa = Array.from(caixasInfo).some(caixaInfo => caixaInfo.contains(event.target));
+function gerarBombas(numBombas) {
+  let posicoesBombas = new Set();
 
-  if (!clicarNaCaixa) {
-    caixasInfo.forEach(infoBox => infoBox.classList.remove("active"));
-    document.removeEventListener("click", fecharFora);
+  // adiciona bombas em posições aleatórias até atingir o número desejado
+  while (posicoesBombas.size < numBombas) {
+    posicoesBombas.add(Math.floor(Math.random() * (tamanhoTabuleiro * tamanhoTabuleiro)));
   }
+
+  return posicoesBombas;
 }
 
+function revelarCelula(celula) {
+  let indice = parseInt(celula.dataset.index);
+  let apostaValor = parseFloat(document.getElementById("bet-amount").value) || apostaInicial;
+
+  if (bombas.has(indice)) {
+    celula.textContent = "💣";
+    celula.classList.add("bomba");
+
+    setTimeout(() => {
+      revelarTabuleiro(() => {
+        setTimeout(() => {
+          alert("Você perdeu! Reiniciando o jogo.");
+          nivel = 1;
+          tamanhoTabuleiro = 3;
+          pontuacao = 0;
+          multiplicador = 1.5;
+          iniciarJogo();
+          document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`; // mostra os pontos zerados
+        }, 1000);
+      });
+    }, 500);
+  } else {
+    celula.textContent = "⭐";
+    celula.classList.add("estrela");
+    pontuacao += Math.floor(apostaValor * multiplicador);
+    estrelasColetadas++;
+
+    let estrelasNecessarias = Math.ceil(totalEstrelas * 0.5); // Agora usa um valor atualizado corretamente
+
+    if (estrelasColetadas >= estrelasNecessarias) {
+      setTimeout(() => {
+        revelarTabuleiro(() => {
+          setTimeout(() => {
+            if (tamanhoTabuleiro < 7) {
+              tamanhoTabuleiro++;
+            }
+            alert(`Parabéns! Você avançou para o nível ${nivel + 1} e agora o tabuleiro é ${tamanhoTabuleiro}x${tamanhoTabuleiro}!`);
+            nivel++;
+            multiplicador *= 1.5;
+            iniciarJogo();
+          }, 1000);
+        });
+      }, 500);
+    }
+  }
+
+  document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`;
+}
+
+function revelarTabuleiro(callback) {
+  let celulas = document.querySelectorAll(".celula");
+  let totalCelulas = celulas.length;
+
+  celulas.forEach((celula, index) => {
+    setTimeout(() => {
+      let indice = parseInt(celula.dataset.index);
+      if (bombas.has(indice)) {
+        celula.textContent = "💣";
+        celula.classList.add("bomba");
+      } else {
+        celula.textContent = "⭐";
+        celula.classList.add("estrela");
+      }
+      celula.classList.add("revelada");
+
+      // chama a callback só depois que a última célula for revelada
+      if (index === totalCelulas - 1 && callback) {
+        setTimeout(callback, 500); // pequeno delay extra pra garantir que tudo foi renderizado
+      }
+    }, index * 50);
+  });
+}

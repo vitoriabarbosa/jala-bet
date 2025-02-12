@@ -26,6 +26,7 @@ Confira o projeto ao vivo: https://jala-bet.vercel.app
 - **JavaScript** - Lógica do jogo e manipulação do DOM.
 - **BoxIcons** - Ícones utilizados na interface.
 - **Vercel** - Hospedagem do jogo.
+- **Git** - Controle de versão.
 
 ---
 
@@ -46,18 +47,40 @@ jala-bet/
 │-- index.html          # Arquivo principal do jogo
 │-- css/
 │   ├── index.css       # Estilos gerais
-│   ├── info-jogo.css   # Estilos para efeito das informações do jogo
+│   ├── modais.css      # Estilos para efeitos interativos do jogo
 │   ├── main.css        # Estilos principais do jogo
 │-- js/
-│   ├── tabuleiro.js    # Geração do tabuleiro e mecanismos principais do jogo
+│   ├── jogo.js         # Geração do tabuleiro e mecanismos principais do jogo
 │   ├── dicas.js        # Lógica para dicas matemáticas (usando alertas)
 │   ├── perguntas.js    # Lógica para perguntas de álgebra (verdadeiro ou falso)
-│   ├── jogo.js         # Chama as funcionalidades do jogo
+│   ├── modal.js        # Funcionalidades interativas do jogo
 │-- assets/
 │   ├── img/            # Imagens do jogo
 │-- README.md           # Documentação
 ```
   
+---
+
+## 🔀 Fluxograma
+```mermaid
+flowchart TD
+    A[Início] -->|Escolhe Aposta| B[Define valor da aposta]
+    B --> C[Configura Tabuleiro]
+    C --> D[Distribui Bombas]
+    D --> E[Inicia o Jogo]
+    E -->|Escolhe uma célula| F{Célula tem Bomba?}
+    F -- Sim --> G[Perde tudo e o jogo reinicia]
+    F -- Não --> H{Célula tem Estrela?}
+    H -- Sim --> I[Recebe Pontos]
+    H -- Não --> J[Continua jogando]
+    I --> K{Pontos suficientes para subir de nível?}
+    K -- Sim --> L[Aumenta dificuldade e próximo nível]
+    K -- Não --> J
+    G -->|Nova tentativa| B
+    L --> C
+
+```
+
 ---
 
 ## 🛠 Como Executar o Projeto
@@ -73,10 +96,11 @@ jala-bet/
 
 ### 3. Abra o arquivo index.html no navegador.
   
+
 ---
 
 ## 📀 Melhorias Futuras
-- Adicionar mais yemas de álgebra para dicas/perguntas.
+- Adicionar mais temas de álgebra para dicas/perguntas.
 - Ajustar lógica da pontuação e recompensas.
 - Melhorar efeitos visuais e animações do jogo.
 - Expandir a interface responsiva. (?)

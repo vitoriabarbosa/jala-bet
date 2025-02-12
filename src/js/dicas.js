@@ -1,3 +1,8 @@
+
+// chama um alert com a dica
+document.getElementById("obter-dica").addEventListener("click", obterDica);
+
+
 function obterDica() {
   if (pontuacao < 20) {
     alert("Você precisa de pelo menos 20 pontos para obter uma dica.");
