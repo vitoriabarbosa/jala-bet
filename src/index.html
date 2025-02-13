@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="./css/index.css">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/modais.css">
+  <link rel="stylesheet" href="./css/medias.css">
     <!-- BoxIcons Icons Links -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -19,7 +20,13 @@
     <i class='bx bx-money-withdraw'></i>
     <a href="#">JalaBet</a>
   </div>
-  <ul>
+  <!-- Ícone do menu hambúrguer -->
+  <div class="menu-celular" id="menu-celular">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <ul id="menu">
     <li>
       <a onclick="abrirInfo('como-jogar')">
         <i class='bx bxs-help-circle'></i>
@@ -109,6 +116,7 @@
         <i class='bx bxs-bomb'></i>
         <label for="num-bombas">Bombas:</label>
         <select id="num-bombas">
+          <option value="30">30%</option>
           <option value="40">40%</option>
           <option value="50">50%</option>
           <option value="60">60%</option>
@@ -145,5 +153,6 @@
 <script src="./js/dicas.js"></script>
 <script src="./js/modal.js"></script>
 <script src="./js/perguntas.js"></script>
+<script src="./js/menu.js"></script>
 </body>
 </html>

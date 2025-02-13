@@ -47,14 +47,24 @@ function bloquearSeletores() {
 }
 
 function criarTabuleiro() {
-  // define o tamanho das células baseado no tamanho do tabuleiro
-  let tamanhoCelula = Math.max(5 - (tamanhoTabuleiro - 3) * 0.5, 2.5);
+  let larguraTela = window.innerWidth; // largura da tela
+  let tamanhoCelula;
+
+  // tamanho da célula conforme o tabuleiro e tela!
+  if (larguraTela <= 768) { // versão mobile
+    tamanhoCelula = Math.max(3 - (tamanhoTabuleiro - 3) * 0.3, 1.8); // ajuste
+  } else { // Se for desktop
+    tamanhoCelula = Math.max(5 - (tamanhoTabuleiro - 3) * 0.5, 2.5);
+  }
+
+  // atualiza a variável CSS global
   document.documentElement.style.setProperty('--tamanho-celula', `${tamanhoCelula}rem`);
 
+  // ajusta o grid dinamicamente
   tabuleiro.style.gridTemplateColumns = `repeat(${tamanhoTabuleiro}, var(--tamanho-celula))`;
   tabuleiro.innerHTML = '';
 
-  // cria as células do tabuleiro
+  // Cria as células do tabuleiro
   for (let i = 0; i < tamanhoTabuleiro * tamanhoTabuleiro; i++) {
     let celula = document.createElement('div');
     celula.classList.add('celula');
@@ -63,6 +73,11 @@ function criarTabuleiro() {
     tabuleiro.appendChild(celula);
   }
 }
+
+// Chamar a função ao carregar e ao redimensionar a tela
+window.addEventListener('resize', criarTabuleiro);
+document.addEventListener('DOMContentLoaded', criarTabuleiro);
+
 
 function gerarBombas(numBombas) {
   let posicoesBombas = new Set();
