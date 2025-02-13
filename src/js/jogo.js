@@ -28,7 +28,7 @@ function iniciarJogo() {
 
 function obterMultiplicadorBombas(porcentagem) {
   let porcentagemInteira = Math.round(porcentagem * 100);
-  const multiplicadores = { 40: 1.2, 50: 1.5, 60: 1.8, 70: 2.2, 80: 2.5 };
+  const multiplicadores = {40: 1.2, 50: 1.5, 60: 1.8, 70: 2.2, 80: 2.5 };
 
   // se a porcentagem não estiver na tabela, retorna um cálculo proporcional
   return multiplicadores[porcentagemInteira] || (1 + (porcentagem / 0.5));
@@ -50,6 +50,7 @@ function criarTabuleiro() {
   let larguraTela = window.innerWidth; // largura da tela
   let tamanhoCelula;
 
+  // Mantendo a responsividade do jogo!
   // tamanho da célula conforme o tabuleiro e tela!
   if (larguraTela <= 768) { // versão mobile
     tamanhoCelula = Math.max(3 - (tamanhoTabuleiro - 3) * 0.3, 1.8); // ajuste
@@ -74,9 +75,10 @@ function criarTabuleiro() {
   }
 }
 
-// Chamar a função ao carregar e ao redimensionar a tela
-window.addEventListener('resize', criarTabuleiro);
-document.addEventListener('DOMContentLoaded', criarTabuleiro);
+// carregar e redimensionar a tela, mas verificando se o jogo foi iniciado, primeiro!
+window.addEventListener('resize', () => {
+  if (jogoIniciado) criarTabuleiro();
+});
 
 
 function gerarBombas(numBombas) {
