@@ -2,6 +2,7 @@ body {
   font-family: Arial, sans-serif;
   text-align: center;
   background: url("../assets/img/fundo-jalabet.jpg") no-repeat center fixed;
+  background-size: cover;
   color: var(--fonte-cor-padrao);
   height: 100vh;
   display: flex;
@@ -20,19 +21,13 @@ header {
   top: 0;
   padding: 1rem;
   align-items: center;
+  z-index: 1;
 }
 
 header .logo{
   display: flex;
   gap: .5rem;
   align-items: center;
-}
-
-header .logo div {
-  width: 2.8rem;
-  height: 2.8rem;
-  background: #fff;
-  border-radius: 50%;
 }
 
 header .logo i {
@@ -79,6 +74,30 @@ header a {
 header .conta i {
   display: flex;
   font-size: 2.8rem;
+}
+
+/* Estilo do menu hambúrguer */
+.menu-celular {
+  display: none; /* Esconder menu por padrão */
+  flex-direction: column;
+  cursor: pointer;
+  gap: 0.3rem;
+  z-index: 15;
+}
+
+.menu-celular span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #b4c2d3;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+/* Esconder menu por padrão */
+#menu {
+  display: flex;
+  gap: 1.5rem;
 }
 
 .area-jogo {

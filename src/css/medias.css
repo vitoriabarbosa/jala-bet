@@ -1,0 +1,140 @@
+
+@media screen and (max-width: 600px) {
+  body {
+    height: calc(100vh + 30vh);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  ul {
+    padding-left: 1rem;
+  }
+
+  header {
+    /*position: relative;*/
+  }
+
+  header .logo i {
+    font-size: 2rem;
+  }
+
+  header .logo a {
+    font-size: 1.25rem;
+    font-family: var(--tipo-fonte-logo), serif;
+  }
+
+  .menu-celular {
+    display: flex;
+  }
+
+  #menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    flex-direction: column;
+    padding: 1rem;
+    background: #02284cd4;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 11;
+  }
+
+  #menu.active {
+    transform: translateY(0);
+  }
+
+  #menu li {
+    margin: .5rem 0;
+  }
+
+  #menu li a {
+    padding: 1rem;
+    justify-content: center;
+  }
+
+  .modal-info-jogo {
+    padding: 2rem;
+  }
+
+  .modal-perguntas-conteudo p {
+    font-size: 1.35rem
+  }
+
+  .area-jogo {
+    margin-top: 5rem;
+  }
+
+  .celula {
+    font-size: 1rem;
+  }
+
+  .conta {
+    display: none;
+  }
+
+  .area-jogo {
+    margin-bottom: 3rem;
+  }
+
+  .controle h1 {
+    font-size: 1.15rem;
+  }
+
+  .painel {
+    /*flex-direction: column;*/
+  }
+
+  .item-painel {
+    width: 90%;
+    padding: .45rem 1rem;
+    font-size: 80%;
+    gap: .25rem;
+    justify-content: center;
+  }
+
+  .item-painel i {
+    font-size: 1.15rem;
+  }
+
+  .item-painel select {
+    width: 60px;
+    font-size: .7rem;
+  }
+
+  #iniciar-jogo {
+    /*order: -1;*/
+    margin-bottom: 2rem;
+  }
+
+  #pontuacao {
+    position: relative;
+    padding: .7rem 1rem;
+  }
+
+  footer p {
+    font-size: .7em;
+  }
+}
+
+@media (max-width: 320px) {
+  body {
+    height: calc(100vh + 80vh);
+  }
+}

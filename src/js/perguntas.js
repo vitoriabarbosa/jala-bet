@@ -48,7 +48,7 @@ function exibirPergunta() {
 function validarResposta(respostaUsuario, respostaCorreta) {
   modalPergunta.style.display = "none";
   overlay.style.display = "none";
-  pontuacao -= 10;
+  // pontuacao -= 10;
 
   if (respostaUsuario === respostaCorreta) {
     alert("Você acertou! Uma estrela acabou de brilhar no tabuleiro! Você ganhou 10 pontos");
