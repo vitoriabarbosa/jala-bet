@@ -18,19 +18,13 @@ const textoPergunta = document.getElementById("texto-pergunta");
 const btnVerdadeiro = document.getElementById("resposta-verdadeiro");
 const btnFalso = document.getElementById("resposta-falso");
 const botaoPergunta = document.getElementById("botao-pergunta");
+const overlay = document.getElementById("overlay"); // armazenar o efeito de escurecer o fundo da tela
 
 botaoPergunta.addEventListener("click", exibirPergunta);
 
-const overlay = document.getElementById("overlay"); // armazenar o efeito de escurecer o fundo da tela
-
 function exibirPergunta() {
-  if (!jogoIniciado) {
-    alert("Opa... Você precisa iniciar o jogo primeiro!");
-    return;
-  }
-
-  if (pontuacao < 10) {
-    alert("Você precisa de pelo menos 10 pontos para responder a uma pergunta!");
+  if (pontuacao < 20) {
+    alert("Você precisa de pelo menos 20 pontos para responder a uma pergunta!");
     return;
   }
 
@@ -48,35 +42,40 @@ function exibirPergunta() {
 function validarResposta(respostaUsuario, respostaCorreta) {
   modalPergunta.style.display = "none";
   overlay.style.display = "none";
-  // pontuacao -= 10;
 
   if (respostaUsuario === respostaCorreta) {
-    alert("Você acertou! Uma estrela acabou de brilhar no tabuleiro! Você ganhou 10 pontos");
-    pontuacao += 10;
-    revelarEstrela(); // Revela a estrela no tabuleiro
-  } else {
-    alert("Ops! Resposta errada. Você perdeu 10 pontos...");
-    pontuacao -= 10;
-  }
+    alert("Você acertou! Olha só... Tem uma estrela brilhando ali!");
+    // pontuacao += 10;   // pontuação bónus
+    atualizarPontuacao();
 
-  // Atualiza a pontuação na interface
-  document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`;
+    // pega uma célula estrela oculta
+    revelarEstrelaExistente();
+  } else {
+    alert("Ops! Resposta errada. Você perdeu 20 pontos...");
+    pontuacao -= 20;
+    atualizarPontuacao();
+  }
 }
 
-// Função que revela a estrela em uma célula aleatória
-function revelarEstrela() {
-  let celulas = document.querySelectorAll(".celula:not(.estrela):not(.bomba)");
-  if (celulas.length === 0) return; // Se todas as células já foram reveladas, não faz nada
+function revelarEstrelaExistente() {
+  // array com todas as posições que não são bombas e não estão reveladas
+  let starCells = [];
+  for (let i = 0; i < tamanhoTabuleiro * tamanhoTabuleiro; i++) {
+    if (!bombas.has(i)) {
+      let celula = document.querySelector(`.celula[data-index="${i}"]`);
+      // verifica se não está revelada ainda
+      if (celula && !celula.classList.contains("revelada")) {
+        starCells.push(celula);
+      }
+    }
+  }
+  
+  if (starCells.length === 0) { // teste
+    alert("Não há mais estrelas para serem reveladas no tabuleiro!");
+    return;
+  }
 
-  let celulaSorteada = celulas[Math.floor(Math.random() * celulas.length)];
-  celulaSorteada.textContent = "⭐";
-  celulaSorteada.classList.add("estrela");
-  celulaSorteada.classList.add("revelada"); // Marca a célula como revelada para não poder ser clicada novamente
-
-  // Atualiza a pontuação da estrela
-  pontuacao += 10; // Adiciona 10 pontos por cada estrela revelada
-  document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos: ${pontuacao}`;
-
-  // Remove o evento de clique da célula revelada
-  celulaSorteada.removeEventListener("click", revelarCelula);
+  // sorteia uma das estrelas não reveladas
+  let celulaSorteada = starCells[Math.floor(Math.random() * starCells.length)];
+  revelarCelula(celulaSorteada);
 }
