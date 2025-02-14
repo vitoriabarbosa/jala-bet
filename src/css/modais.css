@@ -30,12 +30,17 @@
 .titulo-info {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+}
+
+.titulo-info h2 {
+  font-size: 1.8rem;
 }
 
 .titulo-info button {
   padding: .15rem .5rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   display: flex;
   align-items: center;
   color: var(--fonte-cor-padrao);
@@ -48,9 +53,24 @@
   text-align: left;
 }
 
+.modal-info-jogo ol li {
+  list-style: decimal inside;
+  margin: .8rem;
+
+}
+
 .modal-info-jogo ul li {
   list-style: square inside;
   margin: .8rem;
+}
+
+.modal-info-jogo .sub-lista-niveis {
+  margin-left: 2rem;
+}
+
+.modal-info-jogo .sub-lista-niveis li {
+  list-style: none;
+  margin: .25rem;
 }
 
 #overlay {
@@ -74,7 +94,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: url("../assets/img/fundo-perguntas.png") no-repeat center center fixed;
+  background: url("../assets/img/fundo-perguntas.png") no-repeat center center scroll;
   background-size: cover;
   padding: 10%;
   border-radius: 8px;

@@ -116,7 +116,7 @@ function revelarCelula(celula) {
   let apostaValor = parseFloat(apostaSelect.value);
   let porcentagemBombas = parseInt(bombasSelect.value) / 100;
 
-  let multiplicadorNivel = 1 + (nivel - 1) * 0.5; // Aumentar progressivamente o multiplicador de nível
+  let multiplicadorNivel = 1 + (nivel - 1) * 0.25; // Aumentar progressivamente o multiplicador de nível
   let multiplicadorBombas = obterMultiplicadorBombas(porcentagemBombas);
   let pontuacaoRodada = Math.floor(apostaValor * multiplicadorNivel * multiplicadorBombas);
 
@@ -139,17 +139,17 @@ function revelarCelula(celula) {
     pontuacao += pontuacaoRodada; // atualiza a pontuação quando estrela é coletada
     estrelasColetadas++;
 
-    if (estrelasColetadas >= Math.ceil(totalEstrelas * 0.5)) {
+    if (estrelasColetadas >= Math.ceil(totalEstrelas * 0.6)) {
       setTimeout(() => {
         revelarTabuleiro(() => {
           setTimeout(() => {
             if (tamanhoTabuleiro < 7) {
               tamanhoTabuleiro++;
               nivel++;
-              alert(`Parabéns! Nível ${nivel}, tabuleiro ${tamanhoTabuleiro}x${tamanhoTabuleiro}!`);
+              alert(`🎊 Parabéns! 🎊 Nível ${nivel}, tabuleiro ${tamanhoTabuleiro}x${tamanhoTabuleiro}!`);
               iniciarJogo(); // próximo nível
             } else {
-              alert(`Você está no nível máximo! Continue coletando as estrelas para vencer o jogo!`);
+              exibirModalFinal()
             }
           }, 1000);
         });
@@ -186,7 +186,7 @@ function revelarTabuleiro(callback) {
   });
 }
 
-function resetarJogo(mensagem = "Poxa... Você perdeu!") {
+function resetarJogo(mensagem = "Poxa... Você perdeu! 😬") {
   alert(mensagem);
   nivel = 1;
   tamanhoTabuleiro = 3;

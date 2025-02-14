@@ -44,14 +44,14 @@ function validarResposta(respostaUsuario, respostaCorreta) {
   overlay.style.display = "none";
 
   if (respostaUsuario === respostaCorreta) {
-    alert("Você acertou! Olha só... Tem uma estrela brilhando ali!");
+    alert("Você acertou! Olha só... Tem uma estrela brilhando ali! 🤩");
     // pontuacao += 10;   // pontuação bónus
     atualizarPontuacao();
 
     // pega uma célula estrela oculta
     revelarEstrelaExistente();
   } else {
-    alert("Ops! Resposta errada. Você perdeu 20 pontos...");
+    alert("Ops! Resposta errada. Você perdeu 20 pontos... 😬");
     pontuacao -= 20;
     atualizarPontuacao();
   }

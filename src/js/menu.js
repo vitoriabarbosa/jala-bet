@@ -10,8 +10,8 @@ menuCelular.addEventListener("click", () => {
 
 // garante que as imagens já estejam armazenadas no cache do navegador antes de serem aplicadas no CSS.
 const imagensParaCarregar = [
-  "../assets/img/fundo-jalabet.jpg",
-  "../assets/img/fundo-perguntas.png",
+  "./assets/img/fundo-jalabet.jpg",
+  "./assets/img/fundo-perguntas.png",
 ];
 
 imagensParaCarregar.forEach(src => {

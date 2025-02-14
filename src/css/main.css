@@ -1,8 +1,8 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
+  background: url("../assets/img/fundo-jalabet.jpg") no-repeat center scroll;
   background-size: cover;
-  background: url("../assets/img/fundo-jalabet.jpg") no-repeat fixed center;
   color: var(--fonte-cor-padrao);
   height: 100vh;
   display: flex;

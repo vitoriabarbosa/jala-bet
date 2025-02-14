@@ -55,12 +55,16 @@
     padding: 2rem;
   }
 
+  .titulo-info h2, .titulo-info button {
+    font-size: 1.5rem;
+  }
+
   .modal-perguntas-conteudo p {
     font-size: 1.35rem
   }
 
   .area-jogo {
-    margin-top: 5rem 0;
+    margin: 5rem 0;
   }
 
   .controle h1 {
@@ -88,13 +92,17 @@
     font-size: .7rem;
   }
 
-  #iniciar-jogo {
-    margin-bottom: 2rem;
+  #obter-dica.mostrar {
+    margin-top: 2rem;
   }
 
-  #pontuacao {
+  #pontuacao.mostrar {
     position: relative;
     padding: .7rem 1rem;
+  }
+
+  #pontuacao.escondido {
+    position: absolute;
   }
 
   #tabuleiro {

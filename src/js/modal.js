@@ -68,8 +68,8 @@ function exibirModalFinal() {
   modal.id = "modal-final";
   modal.innerHTML = `
     <div class="modal-content">
-      <h2>🏆 Parabéns, você concluiu o jogo!</h2>
-      <p>Sua pontuação final foi: <strong>${pontuacao}</strong></p>
+      <h2>🏆 Parabéns, você concluiu o jogo! 🥳</h2>
+      <p>Sua pontuação final foi: <strong>${pontuacao}</strong> 🎊 🎉</p>
       <button id="fechar-modal">Fechar</button>
     </div>
   `;

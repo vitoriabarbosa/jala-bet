@@ -9,14 +9,13 @@
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/modais.css">
   <link rel="stylesheet" href="./css/medias.css">
-    <!-- BoxIcons Icons Links -->
+  <!-- BoxIcons Icons Links -->
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
 <body>
 <header>
   <div class="logo">
-    <!--<div></div>-->
     <i class='bx bx-money-withdraw'></i>
     <a href="#">JalaBet</a>
   </div>
@@ -51,33 +50,59 @@
 
 <div id="como-jogar" class="modal-info-jogo">
   <div class="titulo-info">
-    <h2>Como Jogar</h2>
+    <h2> 💡 Como Jogar</h2>
     <button class="fechar-modal" onclick="fecharInfo()"><i class='bx bx-x'></i></button>
   </div>
-  <ul>
+  <ol>
     <li>Escolha o valor da sua aposta.</li>
-    <li>Clique em "Iniciar Jogo" para gerar o tabuleiro.</li>
+    <li>Escolha a quantidade (%) de bombas que deseja no jogo.</li>
+    <li>Clique em "Jogar" para gerar o tabuleiro.</li>
     <li>Se encontrar uma estrela (⭐), ganha pontos!</li>
-    <li>Se encontrar uma bomba (💣), perde tudo e o jogo reinicia.</li>
+    <li>Se encontrar uma bomba (💣), perde tudo e o jogo termina.</li>
     <li>Acumule pontos para avançar de nível.</li>
     <li>Use dicas matemáticas para prever os melhores caminhos!</li>
-  </ul>
+    <li>Use as perguntas para testar seu conhecimento em Álgebra Linear e ganhar recompensas!</li>
+    <li>Quanto maior o nível, maior a recompensa e a dificuldade!</li>
+  </ol>
 </div>
 
 <div id="apostas" class="modal-info-jogo">
   <div class="titulo-info">
-    <h2>Apostas</h2>
+    <h2> 💰 Apostas</h2>
     <button onclick="fecharInfo()"><i class='bx bx-x'></i></button>
   </div>
-  <p>As apostas variam de $10 a $100. Quanto maior a aposta, maior a recompensa.</p>
+  <ul>
+    <li>O valor mínimo de aposta é $10, e o máximo é $100.</li>
+    <li>Quanto maior a aposta, maior a recompensa! O valor do prêmio aumenta proporcionalmente ao risco assumido.</li>
+  </ul>
+  <p>
+    <strong>Multiplicadores dinâmicos: </strong>
+    O multiplicador da aposta varia conforme a porcentagem de bombas no tabuleiro. Menos bombas significam multiplicadores menores, enquanto mais bombas aumentam os ganhos potenciais.
+  </p>
 </div>
 
 <div id="niveis" class="modal-info-jogo">
   <div class="titulo-info">
-    <h2>Níveis</h2>
+    <h2> 🔒 Níveis</h2>
     <button onclick="fecharInfo()"><i class='bx bx-x'></i></button>
   </div>
-  <p>Avance de nível ao acumular pontos suficientes! Cada nível aumenta a dificuldade.</p>
+  <ul>
+    <li>Avance de nível ao coletar pelo menos metade das estrelas do tabuleiro!</li>
+    <li>Cada nível aumenta a dificuldade e o tamanho do tabuleiro.</li>
+    <li>Multiplicadores:
+      <ul class="sub-lista-niveis">
+        <li>1º Nível (3x3): x1.0</li>
+        <li>2º Nível (4x4): x1.25</li>
+        <li>3º Nível (5x5): x1.5</li>
+        <li>4º Nível (6x6): x1.75</li>
+        <li>5º Nível (7x7): x2.0</li>
+      </ul>
+    </li>
+  </ul>
+  <p>
+    <strong>Tamanho máximo: </strong>
+    O tabuleiro cresce até 7x7. Após atingir esse tamanho, os jogadores continuam acumulando pontos para alcançar a vitória final!
+  </p>
 </div>
 
 <div id="overlay"></div>
@@ -116,7 +141,6 @@
         <i class='bx bxs-bomb'></i>
         <label for="num-bombas">Bombas:</label>
         <select id="num-bombas">
-          <!--<option value="30">30%</option>-->
           <option value="40">40%</option>
           <option value="50">50%</option>
           <option value="60">60%</option>
