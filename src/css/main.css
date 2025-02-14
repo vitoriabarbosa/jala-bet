@@ -1,8 +1,8 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: url("../assets/img/fundo-jalabet.jpg") no-repeat center fixed;
   background-size: cover;
+  background: url("../assets/img/fundo-jalabet.jpg") no-repeat fixed center;
   color: var(--fonte-cor-padrao);
   height: 100vh;
   display: flex;
@@ -188,8 +188,12 @@ h1 {
 }
 
 .revelada {
-  background: var(--fundo-celula-destaque);
   transition: background-color 0.5s ease-in-out;
+}
+
+.celula.bloqueada {
+  background-color: #888 !important; /* Cinza para células bloqueadas */
+  opacity: 0.7; /* Efeito de bloqueio */
 }
 
 .item-painel label {
@@ -215,6 +219,24 @@ h1 {
   opacity: .8;
   pointer-events: none;
   transition: opacity .5s;
+}
+
+/* esconde os elementos ocultos inicialmente */
+.item-painel.escondido {
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+  transform: translateY(-50px); /* começa deslocado para cima */
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+  /* Classe para ativar o efeito */
+.item-painel.mostrar {
+  opacity: 1;
+  z-index: inherit;
+  position: relative;
+  transform: translateY(0);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
 }
 
 #pontuacao {

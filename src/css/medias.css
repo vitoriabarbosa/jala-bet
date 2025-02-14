@@ -1,42 +1,5 @@
 
-@media screen and (max-width: 600px) {
-  body {
-    height: calc(100vh + 30vh);
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  h4 {
-    font-size: 1.1rem;
-  }
-
-  main {
-    padding: 0.5rem;
-  }
-
-  ul {
-    padding-left: 1rem;
-  }
-
-  header {
-    /*position: relative;*/
-  }
-
-  header .logo i {
-    font-size: 2rem;
-  }
-
-  header .logo a {
-    font-size: 1.25rem;
-    font-family: var(--tipo-fonte-logo), serif;
-  }
-
+@media screen and (max-width: 768px) {
   .menu-celular {
     display: flex;
   }
@@ -69,6 +32,25 @@
     justify-content: center;
   }
 
+  .conta {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    height: calc(100vh + 30vh);
+  }
+
+  header .logo i {
+    font-size: 2rem;
+  }
+
+  header .logo a {
+    font-size: 1.25rem;
+    font-family: var(--tipo-fonte-logo), serif;
+  }
+
   .modal-info-jogo {
     padding: 2rem;
   }
@@ -78,19 +60,7 @@
   }
 
   .area-jogo {
-    margin-top: 5rem;
-  }
-
-  .celula {
-    font-size: 1rem;
-  }
-
-  .conta {
-    display: none;
-  }
-
-  .area-jogo {
-    margin-bottom: 3rem;
+    margin-top: 5rem 0;
   }
 
   .controle h1 {
@@ -98,7 +68,7 @@
   }
 
   .painel {
-    /*flex-direction: column;*/
+    flex-direction: column;
   }
 
   .item-painel {
@@ -119,7 +89,6 @@
   }
 
   #iniciar-jogo {
-    /*order: -1;*/
     margin-bottom: 2rem;
   }
 
@@ -128,8 +97,16 @@
     padding: .7rem 1rem;
   }
 
+  #tabuleiro {
+    gap: .25rem;
+  }
+
+  .celula {
+    font-size: 1rem;
+  }
+
   footer p {
-    font-size: .7em;
+    font-size: .8em;
   }
 }
 

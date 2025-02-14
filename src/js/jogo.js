@@ -10,6 +10,8 @@ const tabuleiro = document.getElementById("tabuleiro");
 const apostaSelect = document.getElementById("bet-amount");
 const bombasSelect = document.getElementById("num-bombas");
 
+const elementosOcultos = document.querySelectorAll("#obter-dica, #botao-pergunta, #pontuacao");
+
 document.getElementById("iniciar-jogo").addEventListener("click", iniciarJogo);
 
 function iniciarJogo() {
@@ -24,6 +26,18 @@ function iniciarJogo() {
 
   criarTabuleiro();
   jogoIniciado = true;
+
+  // exibe os elementos ocultos ao iniciar o jogo
+  elementosOcultos.forEach(item => item.classList.remove("escondido"));
+
+  // exibe os elementos ocultos do painel e adiciona o efeito de "queda" aos itens do painel
+  setTimeout(() => {
+    elementosOcultos.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add("mostrar");
+      }, index * 150);
+    });
+  }, 200);
 }
 
 function obterMultiplicadorBombas(porcentagem) {
@@ -65,7 +79,7 @@ function criarTabuleiro() {
   tabuleiro.style.gridTemplateColumns = `repeat(${tamanhoTabuleiro}, var(--tamanho-celula))`;
   tabuleiro.innerHTML = '';
 
-  // Cria as células do tabuleiro
+  // cria as células do tabuleiro
   for (let i = 0; i < tamanhoTabuleiro * tamanhoTabuleiro; i++) {
     let celula = document.createElement('div');
     celula.classList.add('celula');
@@ -93,7 +107,7 @@ function gerarBombas(numBombas) {
 }
 
 function revelarCelula(celula) {
-  // Se a célula já foi revelada, não faz nada
+  // se a célula já foi revelada, não faz nada
   if (celula.classList.contains("revelada")) {
     return;
   }
@@ -106,7 +120,7 @@ function revelarCelula(celula) {
   let multiplicadorBombas = obterMultiplicadorBombas(porcentagemBombas);
   let pontuacaoRodada = Math.floor(apostaValor * multiplicadorNivel * multiplicadorBombas);
 
-  // Exibe a bomba ou estrela imediatamente
+  // exibe a bomba ou estrela
   if (bombas.has(indice)) {
     celula.textContent = "💣";
     celula.classList.add("bomba", "revelada");
@@ -122,7 +136,7 @@ function revelarCelula(celula) {
     celula.textContent = "⭐";
     celula.classList.add("estrela", "revelada");
 
-    pontuacao += pontuacaoRodada; // Atualiza a pontuação quando estrela é coletada
+    pontuacao += pontuacaoRodada; // atualiza a pontuação quando estrela é coletada
     estrelasColetadas++;
 
     if (estrelasColetadas >= Math.ceil(totalEstrelas * 0.5)) {
@@ -133,7 +147,7 @@ function revelarCelula(celula) {
               tamanhoTabuleiro++;
               nivel++;
               alert(`Parabéns! Nível ${nivel}, tabuleiro ${tamanhoTabuleiro}x${tamanhoTabuleiro}!`);
-              iniciarJogo(); // Próximo nível
+              iniciarJogo(); // próximo nível
             } else {
               alert(`Você está no nível máximo! Continue coletando as estrelas para vencer o jogo!`);
             }
@@ -144,7 +158,7 @@ function revelarCelula(celula) {
   }
 
   verificarVitoria();
-  atualizarPontuacao(); // Atualiza a pontuação na tela após coletar uma estrela
+  atualizarPontuacao(); // atualiza a pontuação na tela após coletar uma estrela
 }
 
 function verificarVitoria() {
@@ -157,11 +171,15 @@ function revelarTabuleiro(callback) {
   document.querySelectorAll(".celula").forEach((celula, index, celulas) => {
     setTimeout(() => {
       let indice = parseInt(celula.dataset.index);
+
+      // adiciona a classe "bloqueada" as células que não descoberta pelo jogador
+      if (!celula.classList.contains("revelada")) {
+        celula.classList.add("bloqueada");
+      }
+
+      // conteúdo da célula (bomba ou estrela)
       celula.textContent = bombas.has(indice) ? "💣" : "⭐";
       celula.classList.add(bombas.has(indice) ? "bomba" : "estrela", "revelada");
-
-      // Adiciona o log para revelar o estado de cada célula
-      console.log(`Célula ${indice}: ${bombas.has(indice) ? "💣" : "⭐"}`);
 
       if (index === celulas.length - 1 && callback) setTimeout(callback, 500);
     }, index * 50);
@@ -182,8 +200,18 @@ function resetarJogo(mensagem = "Poxa... Você perdeu!") {
   apostaSelect.disabled = false;
   bombasSelect.disabled = false;
   
+  // oculta os elementos do painel
+  elementosOcultos.forEach(item => {
+    item.classList.remove("mostrar"); // remove o efeito de exibição
+    item.classList.add("escondido");  // faz com que os elementos sejam ocultos
+  });
+
+  document.querySelectorAll(".celula").forEach(celula => {
+    celula.classList.remove("revelada", "bomba", "estrela", "bloqueada");
+    celula.textContent = "";
+  });
+
   atualizarPontuacao();
   tabuleiro.innerHTML = '';
   document.getElementById("pontuacao").innerHTML = `<i class='bx bxs-coin-stack'></i> Pontos`;
-  
 }
