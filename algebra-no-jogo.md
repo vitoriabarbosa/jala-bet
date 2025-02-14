@@ -11,6 +11,9 @@
 ## ✔ Caminho Otimizado
 - Algoritmos de busca para encontrar a melhor rota dentro da matriz.
 
+## ✔ Multiplicadores e Progressão Algébrica
+- O sistema de pontuação usa um multiplicador crescente por nível, seguindo uma progressão aritmética.
+
 ## ✔ Sistemas Lineares
 - Algumas perguntas podem abordar soluções de sistemas de equações lineares.
 
@@ -30,4 +33,4 @@
 - Uso da matemática para ajudar a encontrar melhores jogadas.
 
 ## ✔ Perguntas de Verdadeiro ou Falso
-- Relacionadas aos conceitos de álgebra, fornecendo dicas valiosas ao jogador que acerta.
+- Relacionadas aos conceitos de álgebra, fornecendo uma recompensa ao jogador que acerta.
